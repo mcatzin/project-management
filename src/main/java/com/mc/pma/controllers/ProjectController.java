@@ -23,7 +23,7 @@ public class ProjectController {
 		
 		model.addAttribute("project", aProject);
 		
-		return "new-project";
+		return "projects/new-project";
 	}
 	
 	@PostMapping("/save")
