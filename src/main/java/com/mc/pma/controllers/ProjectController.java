@@ -1,5 +1,7 @@
 package com.mc.pma.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mc.pma.dao.ProjectRepository;
+
 import com.mc.pma.entities.Project;
 
 @Controller
@@ -16,6 +19,15 @@ public class ProjectController {
 	
 	@Autowired
 	ProjectRepository proRepo;
+	
+	@GetMapping
+	public String displayProjects(Model model) {
+		List<Project> projects= proRepo.findAll();
+		model.addAttribute("projects", projects);
+		
+		return "projects/list-projects";
+	}
+	
 	
 	@GetMapping("/new")
 	public String displayProjectForm(Model model) {
