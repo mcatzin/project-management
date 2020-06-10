@@ -23,7 +23,7 @@ public class EmployeeController {
 	@GetMapping
 	public String displayEmployees(Model model) {
 		List<Employee> employees = empRepo.findAll();
-		model.addAttribute("employee", employees);
+		model.addAttribute("employees", employees);
 		
 		return "employees/list-employees";
 	}
