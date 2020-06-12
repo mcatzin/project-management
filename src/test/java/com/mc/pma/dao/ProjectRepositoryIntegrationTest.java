@@ -1,4 +1,4 @@
-package com.mc.dao;
+package com.mc.pma.dao;
 
 import static org.junit.Assert.assertEquals;
 
@@ -6,18 +6,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.mc.pma.ProjectManagementApplication;
-import com.mc.pma.dao.ProjectRepository;
 import com.mc.pma.entities.Project;
 
 
-@ContextConfiguration(classes=ProjectManagementApplication.class)
+@SpringBootTest
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @SqlGroup({@Sql(executionPhase = ExecutionPhase.BEFORE_TEST_METHOD,scripts= {"classpath:schema.sql","classpath:data.sql"}),
