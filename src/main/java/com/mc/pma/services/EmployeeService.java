@@ -26,4 +26,19 @@ public class EmployeeService {
 	public List<EmployeeProject> employeeProject(){
 		return empRepo.employeeProjects();
 	}
+
+	public List<Employee> findAll() {
+	
+		return empRepo.findAll();
+	}
+
+	public Employee findByEmployeeId(long theId) {
+		
+		return empRepo.findByEmployeeId(theId);
+	}
+
+	public void delete(Employee theEmp) {
+		// TODO Auto-generated method stub
+		empRepo.delete(theEmp);
+	}
 }

@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mc.pma.dao.EmployeeRepository;
 import com.mc.pma.entities.Employee;
+import com.mc.pma.services.EmployeeService;
 
 @Controller
 @RequestMapping("/employees")
@@ -19,11 +21,13 @@ public class EmployeeController {
 	@Autowired
 	EmployeeRepository empRepo;
 	
+	@Autowired
+	EmployeeService empService;
 	
 	@GetMapping
 	public String displayEmployees(Model model) {
 		
-		List<Employee> employees = empRepo.findAll();
+		List<Employee> employees = empService.findAll();
 		model.addAttribute("employees", employees);
 		
 		return "employees/list-employees";
@@ -46,5 +50,23 @@ public class EmployeeController {
 		empRepo.save(employee);
 		
 		return "redirect:/employees";
+	}
+	
+	@GetMapping("update")
+	public String displayEmployeeUpdateForm(@RequestParam("id") long theId, Model model) {
+		Employee theEmp = empService.findByEmployeeId(theId);
+		
+		model.addAttribute("employee", theEmp);
+		
+		return "employees/new-employee";
+	}
+	
+	
+	@GetMapping("delete")
+	public String deleteEmployee(@RequestParam("id") long theId, Model model) {
+		Employee theEmp = empService.findByEmployeeId(theId);
+		empService.delete(theEmp);
+		
+		return "employees/new-employee";
 	}
 }
