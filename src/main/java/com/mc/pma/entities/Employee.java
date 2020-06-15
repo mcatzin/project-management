@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,15 +29,15 @@ public class Employee {
 	@SequenceGenerator(name = "employee_seq", sequenceName = "employee_seq", allocationSize = 1)
 	private long employeeId;
 	
-	@NotNull
+	@NotBlank(message="*Must give a first name")
 	@Size(min = 3, max = 15)
 	private String firstName;
 	
-	@NotNull
+	@NotBlank(message="*Must give a last name")
 	@Size(min = 3, max = 15)
 	private String lastName;
 	
-	@NotNull
+	@NotBlank(message="*Must be a valid email")
 	@Email
 	@UniqueValue
 	private String email;

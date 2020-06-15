@@ -18,27 +18,26 @@ public class EmployeeService {
 	public Employee save(Employee employee) {
 		return empRepo.save(employee);
 	}
-	
-	public List<Employee> getAll(){
+
+
+	public Iterable<Employee> getAll() {
 		return empRepo.findAll();
 	}
-	
-	public List<EmployeeProject> employeeProject(){
+
+
+	public List<EmployeeProject> employeeProjects() {
 		return empRepo.employeeProjects();
 	}
 
-	public List<Employee> findAll() {
-	
-		return empRepo.findAll();
-	}
 
 	public Employee findByEmployeeId(long theId) {
-		
+		// TODO Auto-generated method stub
 		return empRepo.findByEmployeeId(theId);
 	}
 
+
 	public void delete(Employee theEmp) {
-		// TODO Auto-generated method stub
 		empRepo.delete(theEmp);
+		
 	}
 }
